@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+base_dir=$(dirname "$0")
+marp --html $base_dir/*.md

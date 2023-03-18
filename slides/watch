@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+base_dir=$(dirname "$0")
+fswatch -0 $base_dir/*.md | xargs -n1 -I{} ./$base_dir/build
