@@ -12,4 +12,8 @@ class EmailContact
   end
 end
 
-# EmailContact.new(name: 'Bob', email: 'bob@bob.bob', messsage: 'Bobobobobob')
+EmailContact.new(
+  name: 'Bob',
+  email: 'bob@bob.bob',
+  message: 'Bobobobobob'
+).deliver
