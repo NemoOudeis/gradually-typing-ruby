@@ -1,0 +1,9 @@
+class EmailContact
+  # attr_accessor name: String
+  # attr_accessor email: String
+  # attr_accessor message: String
+
+  # def initialize: (name: String, email: String, message: String) -> void
+
+  # def deliver: () -> void
+end

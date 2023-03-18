@@ -11,3 +11,5 @@ class EmailContact
     # imagine
   end
 end
+
+# EmailContact.new(name: 'Bob', email: 'bob@bob.bob', messsage: 'Bobobobobob')
