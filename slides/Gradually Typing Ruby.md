@@ -58,11 +58,12 @@ But It also means
 ---
 
 ```ruby
-def load_and_build_account_signal(account_id)
+def load_and_build_account_signal(account_id)   
   # What is account_id?
   
-
-
+  
+  
+  
 end
 ```
 
@@ -500,25 +501,48 @@ def load_and_build_account_signal(Integer | Hash[String, Hash[String, Integer]])
 
 ---
 
+# Getting Real 
+
+---
+
 <!-- _color: white -->
 
-# Getting Real - Typing all my code
+## Typing ALL my code
 
 ![bg](./img/sisyphus.webp)
 
+<!--
+Not all code needs typing
+* inside of the onion
+-->
+
 ---
 
-# Getting Real - Typing all my code
+## Typing all my code
 
-`rbs protoype rb`, can also generate from Sorbet's RBI format.
+`rbs protoype rb` to the rescue!
+
+```sh
+git clone git@github.com:github/scientist.git
+cd scientist
+rbs prototype rb lib --out-dir=sig
+```
+
+💪 DONE 🎉
 
 ---
 
-# Getting Real - Dependencies & Gems
+## Gems
 
-rbs collections
+[RBS collections](https://github.com/soutaro/steep/blob/master/guides/src/gem-rbs-collection/gem-rbs-collection.md)
 
-https://github.com/soutaro/steep/blob/master/guides/src/gem-rbs-collection/gem-rbs-collection.md
+```sh
+$ rbs collection init
+# customize rbs_collection.yaml
+$ rbs collection install
+```
+
+
 
 ---
 
