@@ -5,5 +5,6 @@ source "https://rubygems.org"
 gem 'rbs', require: false
 gem 'steep', require: false
 gem 'jwt', '2.5'
+gem 'rails'
 
 ruby File.read('.ruby-version')
