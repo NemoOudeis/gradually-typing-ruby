@@ -56,7 +56,7 @@ Gradually as in: you have some ruby code and you incrementally add type definiti
 ![bg left](./img/road.jpg)
 
 - Why type Ruby code?
-- How to type Ruby code with RBS & Steep
+- How to type RBS & Steep
   - Ruby StdLib & RBS basics
 - Getting Real
   - Typing existing code
@@ -65,6 +65,8 @@ Gradually as in: you have some ruby code and you incrementally add type definiti
   - Typing gems
 
 ---
+
+<!-- _class: bigboy -->
 
 # Why would I want static types in ruby?
 
@@ -179,7 +181,9 @@ I know that other people in the company feel similarly.
 
 ---
 
-# 🎯 Make Code Easy To Change
+<!-- _class: lead -->
+
+# 🎯<br/>Make Code<br/>Easy To Change
 
 <!--
 I asked myself and the team: how we can make our system easier to understand? And easier to change safely.
@@ -374,6 +378,8 @@ Now we know:
 -->
 
 ---
+
+<!-- _class: bigboy -->
 
 # Primer on Ruby StdLib types & RBS
 
