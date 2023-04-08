@@ -1,7 +1,7 @@
 ---
 marp: true
 paginate: ture
-theme: uncover
+theme: default
 author: Nemo
 title: Gradually Typing Ruby
 style: |
@@ -11,7 +11,7 @@ style: |
     gap: 1rem;
   }
 # for columns see this discussion
-# https://github.com/marp-team/marp/discussions/192 
+# https://github.com/marp-team/marp/discussions/192
 ---
 
 
@@ -47,7 +47,7 @@ Ruby                         1,954         26,371         15,083        119,623
 
 <!--
 
-My situtation:  I'm handling 100k+ LOC of legacy code. 
+My situtation:  I'm handling 100k+ LOC of legacy code.
 By "legacy" I mean: "not written by me within the last 3 months".
 But It also means
 * grown over 10 years
@@ -58,16 +58,16 @@ But It also means
 ---
 
 ```ruby
-def load_and_build_account_signal(account_id)   
+def load_and_build_account_signal(account_id)
   # What is account_id?
-  
-  
-  
-  
+
+
+
+
 end
 ```
 
-<!-- 
+<!--
 In that context, I often come across a method like this
 I ask myself - what is account_id?
 Maybe an integer (DB id)
@@ -87,7 +87,7 @@ def load_and_build_account_signal(account_id)
 end
 ```
 
-<!-- 
+<!--
 Then I read on and see that...
 
 ...dynamic typing FTW!
@@ -102,13 +102,13 @@ So: sometimes I don't know what assumptions I can safely make, within a method/f
 
 ```ruby
 poller.call(opts)
- ↘︎ 
+ ↘︎
    poll_and_work(opts)
-    ↘︎ 
+    ↘︎
       work_on_task(opts)
-       ↘︎ 
+       ↘︎
          activity_handler.work(opts)
-          ↘︎ 
+          ↘︎
             importer.import_statement(opts)
 ```
 
@@ -132,7 +132,7 @@ Note that none of this is a stab at developers who came before me. I am certain 
 \=
 😰 scary to make a change
 
-<!-- 
+<!--
 I know that other people in the company feel similarly.
 -->
 
@@ -140,10 +140,10 @@ I know that other people in the company feel similarly.
 
 # 🎯 Make Code Easy To Change
 
-<!-- 
+<!--
 I asked myself and the team: how we can make our system easier to understand? And easier to change safely.
 
-The idea of static typing has come up before, in  
+The idea of static typing has come up before, in
 in 2018 they experimented with Sorbet. At the time they were uncertain about the runtime overhead and they shelved the effort.
 
 With the knowledege that typing is welcome idea and that performance is a critical consideration, I read up on RBS. In our quarterly hack days I prototyped it out and it turned out to be a good fit for us.
@@ -199,6 +199,8 @@ class EmailContact
     # imagine the amazing implementation
   end
 end
+
+
 ```
 
 </div>
@@ -207,6 +209,8 @@ end
 </div>
 
 </div>
+
+`$ git checkout step-1-no-types`
 
 
 ---
@@ -232,6 +236,8 @@ class EmailContact
     # imagine the amazing implementation
   end
 end
+
+
 ```
 
 </div>
@@ -242,7 +248,7 @@ $ bundle exec steep check
 # Type checking files:
 
 .............................................F
-lib/gradually_typing_ruby.rb:1:6: [warning] 
+lib/gradually_typing_ruby.rb:1:6: [warning]
 Cannot find the declaration of class: `EmailContact`
 │ Diagnostic ID: Ruby::UnknownConstant
 │
@@ -254,6 +260,8 @@ Detected 1 problem from 1 file
 
 </div>
 </div>
+
+`$ git checkout step-1-no-types`
 
 ---
 
@@ -278,22 +286,24 @@ class EmailContact
     # imagine
   end
 end
+
+
 ```
 
 </div>
 <div>
 
 ```ruby
-# email_contact.rbs                     
+# email_contact.rbs
 
 class EmailContact
   attr_accessor name: String
   attr_accessor email: String
-  attr_accessor message: String
+  attr_accessor message: String    
 
   def initialize: (
-    name: String, 
-    email: String, 
+    name: String,
+    email: String,
     message: String
   ) -> void
 
@@ -304,6 +314,8 @@ end
 </div>
 </div>
 
+`$ git checkout step-2-minimal-types`
+
 ---
 
 ✅ Write type definitions
@@ -311,8 +323,8 @@ end
 ✅ VS Code type support
 
 
-<!-- 
-Now we know: 
+<!--
+Now we know:
 * how to write type definitions
 * how to check our code on the command line
 * how to get fast feeback from VS Code
@@ -322,7 +334,7 @@ Now we know:
 
 # Primer on Ruby StdLib types & RBS
 
-<!-- 
+<!--
 Let's look some basics - the ruby standard library types and what RBS provides out of the box
 -->
 
@@ -337,13 +349,13 @@ Let's look some basics - the ruby standard library types and what RBS provides o
 
 ```ruby
 class Example
-                                                                
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
 end
 ```
 ---
@@ -352,13 +364,13 @@ end
 
 ```ruby
 class Example
-  @name: String                 # all StdLib types included     
-  
-  
-  
-  
-  
-  
+  @name: String                 # all StdLib types included
+
+
+
+
+
+
 end
 ```
 
@@ -368,13 +380,13 @@ end
 
 ```ruby
 class Example
-  @name: String                 # all StdLib types included     
+  @name: String                 # all StdLib types included
   @another_self: Example        # use your own types
-  
-  
-  
-  
-  
+
+
+
+
+
 end
 ```
 
@@ -384,13 +396,13 @@ end
 
 ```ruby
 class Example
-  @name: String                 # all StdLib types included     
+  @name: String                 # all StdLib types included
   @another_self: Example        # use your own types
   @my_secrets: Array[String]    # generic types
-  
-  
-  
-  
+
+
+
+
 end
 ```
 
@@ -400,13 +412,13 @@ end
 
 ```ruby
 class Example
-  @name: String                 # all StdLib types included     
+  @name: String                 # all StdLib types included
   @another_self: Example        # use your own types
   @my_secrets: Array[String]    # generic types
   @not_sure: String | Integer   # either a string or an int
-  
-  
-  
+
+
+
 end
 ```
 
@@ -416,13 +428,13 @@ end
 
 ```ruby
 class Example
-  @name: String                 # all StdLib types included     
+  @name: String                 # all StdLib types included
   @another_self: Example        # use your own types
   @my_secrets: Array[String]    # generic types
   @not_sure: String | Integer   # either a string or an int
 
   @even_less_sure: String | Integer | Symbol
-  
+
 end
 ```
 
@@ -432,13 +444,13 @@ end
 
 ```ruby
 class Example
-  @name: String                 # all StdLib types included     
+  @name: String                 # all StdLib types included
   @another_self: Example        # use your own types
   @my_secrets: Array[String]    # generic types
   @not_sure: String | Integer   # either a string or an int
   type myId = String | Integer | Symbol
   @even_less_sure: myId         # type alias
-  
+
 end
 ```
 
@@ -447,7 +459,7 @@ end
 
 ```ruby
 class Example
-  @name: String                 # all StdLib types included     
+  @name: String                 # all StdLib types included
   @another_self: Example        # use your own types
   @my_secrets: Array[String]    # generic types
   @not_sure: String | Integer   # either a string or an int
@@ -466,7 +478,7 @@ end
 def load_and_build_account_signal(account_id)
 
 # .rbs file
-def load_and_build_account_signal(Integer | Hash)                            
+def load_and_build_account_signal: (Integer | Hash) -> Signal
 
 
 ```
@@ -479,9 +491,9 @@ def load_and_build_account_signal(Integer | Hash)
 # .rb file
 def load_and_build_account_signal(account_id)
 
-# rbs file
-# def load_and_build_account_signal(Integer | Hash)                             
-def load_and_build_account_signal(Integer | Hash[String, Hash])
+# .rbs file
+def load_and_build_account_signal: (Integer | Hash) -> Signal
+def load_and_build_account_signal: (Integer | Hash[String, Hash]) -> Signal
 
 ```
 
@@ -493,15 +505,15 @@ def load_and_build_account_signal(Integer | Hash[String, Hash])
 # .rb file
 def load_and_build_account_signal(account_id)
 
-# rbs file
-# def load_and_build_account_signal(Integer | Hash)                              
-# def load_and_build_account_signal(Integer | Hash[String, Hash])
-def load_and_build_account_signal(Integer | Hash[String, Hash[String, Integer]])
+# .rbs file
+def load_and_build_account_signal: (Integer | Hash) -> Signal
+def load_and_build_account_signal: (Integer | Hash[String, Hash]) -> Signal
+def load_and_build_account_signal: (Integer | Hash[String, Hash[String, Integer]]) -> Signal
 ```
 
 ---
 
-# Getting Real 
+# Getting Real
 
 ---
 
@@ -532,24 +544,109 @@ rbs prototype rb lib --out-dir=sig
 
 ---
 
-## Gems
+## Using Types with Gems
 
 [RBS collections](https://github.com/soutaro/steep/blob/master/guides/src/gem-rbs-collection/gem-rbs-collection.md)
 
 ```sh
-$ rbs collection init
-# customize rbs_collection.yaml
-$ rbs collection install
+$ bundle install
+$ bundle exec rbs collection init
+$ bundle exec rbs collection install
 ```
 
+`$ git checkout step-3-rbs-collection`
 
+<!--
+TODO
+...and it should all work!
+the CLI works like a charm
+the VS Code steep plugin is a bit flaky tho :/
+-->
 
 ---
 
-# Getting Real - But I neeeeeed a 🦆!
+## ...but I *neeeeeeeeed* a 🦆!
 
+```ruby
+if: proc { |it|
+
+  it.my_favorite_pet?
+}
+
+$ Type checking files: .................................F
+
+[error] Type `nil` does not have method `my_favorite_pet?`
+│ Diagnostic ID: Ruby::NoMethod
+└               it.my_favorite_pet?
+                   ~~~~~~~~~~~~~~~~
+```
+
+`$ git checkout step-4-ar-and-type-comments`
+
+---
+
+## ...but I *neeeeeeeeed* a 🦆!
+
+```ruby
+if: proc { |it|
+  # @type var it: untyped
+  it.my_favorite_pet?
+}
+
+$ Type checking files: ..................................
+
+No type error detected. 🫖
+
+
+
+```
+
+`$ git checkout step-4-ar-and-type-comments`
+
+---
+
+## Writing Types for Gems
+
+Your own gem → write sigantures in `sig` and include it in your gem
+
+Somebodyelse's gem → contribute to [gem_rbs_collection](https://github.com/ruby/gem_rbs_collection/blob/main/docs/CONTRIBUTING.md)
+
+```
+bundle install
+bundle exec rbs collection update
+bundle exec rbs collection install
+bundle exec steep check
+```
+
+<!--
+A few disclaimers:
+* rbs collection only supports gems distributed via rubygems or types from the central collection repo
+* rbs collection does not support local gems installed via path
+* rbs collection does not gems installed via git
+-->
+
+...however shipping types in these 👇 scenarios won't work...
+
+```ruby
+gem 'git-gem', git: 'https://github.com/user/gem.git'
+gem 'local-gem', path: '/Users/user/path/to/local-gem'
+```
 ---
 
 ![bg](./img/check-yourself-2.webp)
 
+<!--
+Summary of what we've covered
+-->
 ---
+
+## References
+
+* Slides
+* [Code](https://github.com/NemoOudeis/gradually-typing-ruby)
+* [RBS](https://github.com/ruby/rbs)
+* [gem_rbs_collection](https://github.com/ruby/gem_rbs_collection)
+* [Steep](https://github.com/soutaro/steep)
+* [Typeprof](https://github.com/ruby/typeprof)
+* [Dec 2020 - Evil Martians: Climbing Steep Hills](https://evilmartians.com/chronicles/climbing-steep-hills-or-adopting-ruby-types)
+* [Dec 2022 - RBS: Is it Production Ready?](https://medium.com/whitespectre/an-exploration-of-rbs-by-ruby-is-it-production-ready-c1eb86530154)
