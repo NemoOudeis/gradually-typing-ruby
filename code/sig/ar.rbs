@@ -1,2 +1,7 @@
 class Pet < ActiveRecord::Base
+  attr_accessor id: Integer
+  attr_accessor name: String?
+  attr_accessor species: String?
+  
+  def my_favorite_pet?: () -> bool
 end
