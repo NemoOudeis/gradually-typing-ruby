@@ -6,6 +6,6 @@ token = JWT.encode payload, nil, 'none'
 
 puts token
 
-decoded_token = JWT.decode token, nil, false, 0xA6
+decoded_token = JWT.decode token, nil, false
 
 puts decoded_token
