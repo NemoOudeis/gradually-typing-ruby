@@ -6,6 +6,7 @@ class Pet < ActiveRecord::Base
               message: "species must be 'cat' or 'fish' if it is my favorite pet"
             },
             if: proc { |it|
+              # @type var it: untyped
               it.my_favorite_pet?
             }
 
