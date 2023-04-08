@@ -19,7 +19,7 @@ echo "Removing existing files"
 rm -rf public/*
 
 echo "Generating site"
-marp --html *.md --output public/index.html
+./build
 cp -r img public
 
 echo "Updating gh-pages branch"

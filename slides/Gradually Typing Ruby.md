@@ -10,12 +10,21 @@ style: |
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
   }
+  section.lead h1 {
+    text-align: center;
+    font-size: 4em;
+  }
+  section.bigboy h1 {
+    font-size: 4em;
+  }
 # for columns see this discussion
 # https://github.com/marp-team/marp/discussions/192
 ---
 
+<!-- _class: bigboy -->
 
-# **Gradually Typing Ruby**
+# Gradually Typing ![ruby height:100px](./img/ruby.png)
+
 
 <!--
 Hi, I'm Nemo.
@@ -24,6 +33,36 @@ You might ask: Hey, doesn't have Ruby types already? And aren't they all ducks?
 What I'll talk about is static typing, as in "compile" time check-able.
 Gradually as in: you have some ruby code and you incrementally add type definitions to it.
 -->
+
+---
+
+# Nemo
+
+![bg right:45%](./img/surpised-squirrel.png)
+
+- Engineer at ![Moneytree height:30px](https://global-uploads.webflow.com/60794987246a1d5f3d6bfde6/60794987246a1d66e16c0371_Moneytree-Standard-No-Margin.svg)
+- Ruby: 8 years / 1 year
+- In the past: TypeScript, Kotlin
+- ![github height:30px](./img/octocat.svg) [NemoOudeis](https://github.com/nemoOudeis/)
+
+👇 Code & Slides [gradually-typing-ruby](https://github.com/NemoOudeis/gradually-typing-ruby)
+
+![qr code height:250px](./img/qr.png)
+
+---
+
+# Roadmap
+
+![bg left](./img/road.jpg)
+
+- Why type Ruby code?
+- How to type Ruby code with RBS & Steep
+  - Ruby StdLib & RBS basics
+- Getting Real
+  - Typing existing code
+  - Using gems
+  - Escaping types
+  - Typing gems
 
 ---
 
@@ -124,6 +163,8 @@ Note that none of this is a stab at developers who came before me. I am certain 
 
 <!-- I found existing code to be  -->
 
+![bg right](./img/scared.webp)
+
 🤔 hard to understand
 \+
 🦶🔫 easy to make mistakes
@@ -151,7 +192,7 @@ With the knowledege that typing is welcome idea and that performance is a critic
 
 ---
 
-![bg 80%](./img/check-yourself-1.webp)
+![bg fit](./img/check-yourself-1.webp)
 
 <!--
 So let's get started with typing our existing ruby code!
@@ -318,9 +359,11 @@ end
 
 ---
 
-✅ Write type definitions
-✅ Check types on CLI
-✅ VS Code type support
+![bg right fit](./img/good-job.webp)
+
+* ✅ Write type definitions
+* ✅ Check types on CLI
+* ✅ VS Code integration
 
 
 <!--
@@ -340,8 +383,7 @@ Let's look some basics - the ruby standard library types and what RBS provides o
 
 ---
 
-![bg 95%](./img/some-ruby-types.png)
-
+![bg fit](./img/some-ruby-types.png)
 
 ---
 
@@ -517,9 +559,10 @@ def load_and_build_account_signal: (Integer | Hash[String, Hash[String, Integer]
 
 ---
 
-<!-- _color: white -->
+<!-- _color: yellow -->
+<!-- _class: lead -->
 
-## Typing ALL my code
+# Typing ALL my code
 
 ![bg](./img/sisyphus.webp)
 
@@ -530,7 +573,7 @@ Not all code needs typing
 
 ---
 
-## Typing all my code
+## Typing ALL my code
 
 `rbs protoype rb` to the rescue!
 
@@ -640,13 +683,24 @@ Summary of what we've covered
 -->
 ---
 
-## References
+## Links
 
-* Slides
-* [Code](https://github.com/NemoOudeis/gradually-typing-ruby)
-* [RBS](https://github.com/ruby/rbs)
-* [gem_rbs_collection](https://github.com/ruby/gem_rbs_collection)
-* [Steep](https://github.com/soutaro/steep)
-* [Typeprof](https://github.com/ruby/typeprof)
-* [Dec 2020 - Evil Martians: Climbing Steep Hills](https://evilmartians.com/chronicles/climbing-steep-hills-or-adopting-ruby-types)
-* [Dec 2022 - RBS: Is it Production Ready?](https://medium.com/whitespectre/an-exploration-of-rbs-by-ruby-is-it-production-ready-c1eb86530154)
+- [Slides](https://nemooudeis.github.io/gradually-typing-ruby/)
+- [Code](https://github.com/NemoOudeis/gradually-typing-ruby)
+- [RBS](https://github.com/ruby/rbs)
+- [gem_rbs_collection](https://github.com/ruby/gem_rbs_collection)
+- [Steep](https://github.com/soutaro/steep)
+- [Typeprof](https://github.com/ruby/typeprof)
+- [Dec 2020 - Evil Martians: Climbing Steep Hills](https://evilmartians.com/chronicles/climbing-steep-hills-or-adopting-ruby-types)
+- [Dec 2022 - RBS: Is it Production Ready?](https://medium.com/whitespectre/an-exploration-of-rbs-by-ruby-is-it-production-ready-c1eb86530154)
+- [More Ruby Core Type Hierarchy](http://jeromedalbert.com/a-diagram-of-the-ruby-core-object-model/)
+
+---
+
+<!-- _color: yellow -->
+<!-- _class: lead -->
+
+# Happy Typing!
+
+![bg](./img/exploding-with-joy.png)
+![bg](./img/exploding-with-joy.png)

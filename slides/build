@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
 
 base_dir=$(dirname "$0")
-marp --html $base_dir/*.md
+marp --html $base_dir/*.md --output $base_dir/public/index.html --bespoke.progress=true
+cp -r $base_dir/img $base_dir/public
