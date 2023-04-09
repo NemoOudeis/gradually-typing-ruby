@@ -31,23 +31,28 @@ Hi, I'm Nemo.
 Today I'll talk about Gradually Typing Ruby code.
 You might ask: Hey, doesn't have Ruby types already? And aren't they all ducks?
 What I'll talk about is static typing, as in "compile" time check-able.
-Gradually as in: you have some ruby code and you incrementally add type definitions to it.
+And by Gradually I mean: you have some ruby code to which you add type definitions a little at a time.
 -->
 
 ---
 
-# Nemo
+# Nemo 👋
 
 ![bg right:45%](./img/surpised-squirrel.png)
 
-- Engineer at ![Moneytree height:30px](https://global-uploads.webflow.com/60794987246a1d5f3d6bfde6/60794987246a1d66e16c0371_Moneytree-Standard-No-Margin.svg)
-- Ruby: 8 years / 1 year
-- In the past: TypeScript, Kotlin
-- ![github height:30px](./img/octocat.svg) [NemoOudeis](https://github.com/nemoOudeis/)
-
-👇 Code & Slides [gradually-typing-ruby](https://github.com/NemoOudeis/gradually-typing-ruby)
-
+* Engineer at ![Moneytree height:30px](https://global-uploads.webflow.com/60794987246a1d5f3d6bfde6/60794987246a1d66e16c0371_Moneytree-Standard-No-Margin.svg)
+* Ruby: 8 years / 1 year
+* 🎤🎹🎸 I'm also in a band
+* ![github height:30px](./img/octocat.svg) [NemoOudeis](https://github.com/nemoOudeis/)
+* 👇 Code/Slides [gradually-typing-ruby](https://github.com/NemoOudeis/gradually-typing-ruby)
 ![qr code height:250px](./img/qr.png)
+
+<!-- 
+Before we get into it, a little about me.
+I go by Nemo, work at Moneytree. I joined about 1 year ago, since then I spent most of my coding time in ruby. 
+Before that I've worked a lot on mobile and backend on the JVM and in the JS ecosystem.
+You'll find me on github, and the slides and code for this talk are in the gradually-typing-ruby repo
+-->
 
 ---
 
@@ -64,21 +69,30 @@ Gradually as in: you have some ruby code and you incrementally add type definiti
   - Escaping types
   - Typing gems
 
+<!--
+This is what we'll cover today.
+We'll start with _my_ motivation for typing ruby code.
+Then cover how you would go about typing your ruby code - if you chose to do so. I'll only cover the basics of the Ruby StdLib and RBS to get you started.
+Then I'll go over a couple of situations that you'll find yourself in if you're trying to do this in the "real world".
+
+After this you'll have an understanding of how to apply RBS & Steep to your (professional) codebase.
+-->
+
 ---
 
 <!-- _class: bigboy -->
 
-# Why would I want static types in ruby?
+# Why would I want static types in Ruby?
 
 <!--
-I'll tell you why I want types and how you can do this. I won't talk about general advantages and drawbacks of static typying or compare static to dynamic typing.
+I'll tell you why _I_ want types and how you can do this. I won't talk about general advantages and drawbacks of static typying or compare static to dynamic typing.
 There's plenty of material out there and it always depends on your situation - team, project, preference.
 -->
 
 ---
 
 ```shell
-cloc --include-lang=ruby .
+$ cloc --include-lang=ruby .
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
@@ -134,6 +148,7 @@ Then I read on and see that...
 ...dynamic typing FTW!
 
 Unit tests can help here a bit - but they can also be deceiving. Sometimes I find unit tests that only pass integers, but in actual code we support uuids and integer ids.
+
 Other times unit tests pass, but only because some dependency is stubbed out and in a production environment that value fails. We don't have integrated test for all our code (which is a topic for another talk)
 
 So: sometimes I don't know what assumptions I can safely make, within a method/function. I have try to keep all possible states in my mind while changing that code.
@@ -158,7 +173,7 @@ What is in `opts`?
 <!--
 Or I have to jump up and down the call stack to understand what states I can rule out - to reduce the mental load.
 
-Note that none of this is a stab at developers who came before me. I am certain that everybody had the best intentions writing the code and that they made the best choices they could at the time. Code just has a tendency to sparwl and overgrowth and entangle until it becomes unmanagable. Especially at the low level.
+I'm not blaming the developers who came before me. I am certain that everybody had the best intentions writing the code and that they made the best choices they could at the time. Code just has a tendency to sparwl and overgrowth and entangle until it becomes unmanagable. Especially at the low level.
 -->
 
 ---
@@ -186,12 +201,11 @@ I know that other people in the company feel similarly.
 # 🎯<br/>Make Code<br/>Easy To Change
 
 <!--
-I asked myself and the team: how we can make our system easier to understand? And easier to change safely.
+I asked myself and the team: how we can make our system easier to understand? And easier to change safely. Static typing is one approach.
 
-The idea of static typing has come up before, in
-in 2018 they experimented with Sorbet. At the time they were uncertain about the runtime overhead and they shelved the effort.
+The idea of static typing came up before, in 2018 they experimented with Sorbet. At the time they were uncertain about the runtime overhead and they shelved the effort.
 
-With the knowledege that typing is welcome idea and that performance is a critical consideration, I read up on RBS. In our quarterly hack days I prototyped it out and it turned out to be a good fit for us.
+So, I read up on RBS and in our hack days I prototyped it. And it turned out to be a good fit for us.
 -->
 
 ---
@@ -204,21 +218,6 @@ So let's get started with typing our existing ruby code!
 I'll skip over the basic configuration of steep.
 
 And we'll go right into the demo, starting at the git tag step-1-no-types
--->
-
-
-<!--
----
-
-
-[Sorbet](https://sorbet.org/) | [RBS](https://github.com/ruby/rbs)   | [Steep](https://github.com/soutaro/steep)
------- | ------------- | ----
-![width:100px](https://github.com/sorbet/sorbet/raw/master/docs/logo/sorbet-logo-purple-sparkles.svg) | ∅ | ∅
-By Stripe | By Ruby 3 | By [soutaro](https://github.com/soutaro)
-Good docs | Minimal docs | Minimal docs
-3.4k ⭐️ | 1.6k ⭐️ | 1.1k ⭐️
-
-
 -->
 
 ---
@@ -391,6 +390,14 @@ Let's look some basics - the ruby standard library types and what RBS provides o
 
 ![bg fit](./img/some-ruby-types.png)
 
+<!--
+I tried to draw the Ruby StdLib and soon realized that it's far bigger than I anticipated.
+All the error classes would fill a slide.
+Dynamic typing and polymorphism hides a lot of this complexity from our day to day ruby coding (thank god). But we need a basic understaning of the StdLib type hierarchy in order to type our own code.
+
+Class#ancestors and Class#superclass and Method#owner and Method#source_location are your friends here.
+-->
+
 ---
 
 # Whirlwind Tour of RBS
@@ -406,6 +413,11 @@ class Example
 
 end
 ```
+
+<!-- 
+Now that you know all about the Ruby StdLib, let's look at basic way of writing types in RBS.
+-->
+
 ---
 
 # Whirlwind Tour of RBS
@@ -531,6 +543,10 @@ def load_and_build_account_signal: (Integer | Hash) -> Signal
 
 ```
 
+<!--
+Equipped with our RBS knowledge we can write a type definition for our duck-typed account_id
+-->
+
 ---
 
 # Recall earlier...
@@ -559,9 +575,17 @@ def load_and_build_account_signal: (Integer | Hash[String, Hash]) -> Signal
 def load_and_build_account_signal: (Integer | Hash[String, Hash[String, Integer]]) -> Signal
 ```
 
+<!--
+These are all valid types to use and you'll have to decide how 細かい you want to be.
+-->
+
 ---
 
 # Getting Real
+
+<!--
+Now let's go beyond the hello-world-honeymoon phase of RBS and figure out how to deal with some of the hard problems of typing an existing 100k LOC+ legacy codebase.
+-->
 
 ---
 
