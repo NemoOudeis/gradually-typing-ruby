@@ -61,8 +61,7 @@ You'll find me on github, and the slides and code for this talk are in the gradu
 ![bg left](./img/road.jpg)
 
 - Why type Ruby code?
-- How to type RBS & Steep
-  - Ruby StdLib & RBS basics
+- How use RBS & Steep
 - Getting Real
   - Typing existing code
   - Using gems
@@ -382,22 +381,11 @@ Now we know:
 
 <!-- _class: bigboy -->
 
-# Primer on Ruby StdLib types & RBS
+<!-- # Primer on Ruby StdLib types & RBS -->
+# A Whirlwind Tour RBS
 
 <!--
 Let's look some basics - the ruby standard library types and what RBS provides out of the box
--->
-
----
-
-![bg fit](./img/some-ruby-types.png)
-
-<!--
-I tried to draw the Ruby StdLib and soon realized that it's far bigger than I anticipated.
-All the error classes would fill a slide.
-Dynamic typing and polymorphism hides a lot of this complexity from our day to day ruby coding (thank god). But we need a basic understaning of the StdLib type hierarchy in order to type our own code.
-
-Class#ancestors and Class#superclass and Method#owner and Method#source_location are your friends here.
 -->
 
 ---
@@ -786,8 +774,7 @@ Summary of what we've covered
 ## Roadmap
 
 - Why type Ruby code?
-- How to type RBS & Steep
-  - Ruby StdLib & RBS basics
+- How use RBS & Steep
 - Getting Real
   - Typing existing code
   - Using gems
@@ -811,8 +798,7 @@ Looking back at the roadmap we setout to cover at the start.
 ## Roadmap
 
 - Why type Ruby code?
-- How to type RBS & Steep
-  - Ruby StdLib & RBS basics
+- How use RBS & Steep
 - Getting Real
   - Typing existing code
   - Using gems
