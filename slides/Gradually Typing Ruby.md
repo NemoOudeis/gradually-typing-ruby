@@ -218,6 +218,8 @@ So let's get started with typing our existing ruby code!
 I'll skip over the basic configuration of steep.
 
 And we'll go right into the demo, starting at the git tag step-1-no-types
+
+💻 Let's do it together!
 -->
 
 ---
@@ -597,8 +599,14 @@ Now let's go beyond the hello-world-honeymoon phase of RBS and figure out how to
 ![bg](./img/sisyphus.webp)
 
 <!--
-Not all code needs typing
-* inside of the onion
+The first problem is the 100k LOC - that sounds like a lot of work.
+
+In reality not all code should have type definitions.
+I would argue that views and controllers don't need types.
+Types become more valuable the more the typed code is re-used. In MVC that's the model code. In clean architecture it's the use cases and entities.
+In any design pattern / architecture, it's the pure business logic & domain logic that benefits the most from typing it.
+
+Or just type what is confusing to you 😁
 -->
 
 ---
@@ -615,6 +623,19 @@ rbs prototype rb lib --out-dir=sig
 
 💪 DONE 🎉
 
+<!-- _footer: Another tool called `typeprof` does the same thing -->
+
+<!--
+One way to start typing your code is by generating type definitions from the ruby code.
+A lot of information is in the source code and (depending on what kind of code you write) rbs can come up with a reasonable starting point for you.
+Let's give it a try by typing the open source library scientist!
+
+💻 Let's do it together!
+
+So, not bad, but far from perfect.
+One thing it doesn't do well is meta programmed stuff. Active Record Rails scopes, attributes, store accessors etc.
+-->
+
 ---
 
 ## Using Types with Gems
@@ -630,10 +651,42 @@ $ bundle exec rbs collection install
 `$ git checkout step-3-rbs-collection`
 
 <!--
-TODO
-...and it should all work!
+Gems can bring their own type definitions.
+But many gems don't (yet?). For those there is an opensource repository
+with a handful of community maintained type definitions.
+You can install these definitions via the rbs collection commands.
+
+💻 Let's do it together!
+
 the CLI works like a charm
 the VS Code steep plugin is a bit flaky tho :/
+-->
+
+---
+
+## ...but I *neeeeeeeeed* a 🦆!
+
+```ruby
+
+
+
+
+
+
+
+
+
+
+
+```
+
+`$ git checkout step-4-ar-and-type-comments`
+
+<!--
+Sometimes we really need duck typing, even with RBS types.
+Let me show you one such example
+
+💻 Let's do it together!
 -->
 
 ---
@@ -676,6 +729,12 @@ No type error detected. 🫖
 
 `$ git checkout step-4-ar-and-type-comments`
 
+<!--
+Making the variable untyped frees us from these cases where the type 
+system doesn't easily capture the intent of the code. But it is a bit
+disappointing to have to opt out of typing because of lacking tooling/typing of OSS.
+-->
+
 ---
 
 ## Writing Types for Gems
@@ -684,12 +743,20 @@ Your own gem → write sigantures in `sig` and include it in your gem
 
 Somebodyelse's gem → contribute to [gem_rbs_collection](https://github.com/ruby/gem_rbs_collection/blob/main/docs/CONTRIBUTING.md)
 
-```
-bundle install
-bundle exec rbs collection update
-bundle exec rbs collection install
-bundle exec steep check
-```
+<!--
+A few disclaimers:
+* rbs collection only supports gems distributed via rubygems or types from the central collection repo
+* rbs collection does not support local gems installed via path
+* rbs collection does not gems installed via git
+-->
+
+---
+
+## Writing Types for Gems
+
+Your own gem → write sigantures in `sig` and include it in your gem
+
+Somebodyelse's gem → contribute to [gem_rbs_collection](https://github.com/ruby/gem_rbs_collection/blob/main/docs/CONTRIBUTING.md)
 
 <!--
 A few disclaimers:
@@ -701,7 +768,7 @@ A few disclaimers:
 ...however shipping types in these 👇 scenarios won't work...
 
 ```ruby
-gem 'git-gem', git: 'https://github.com/user/gem.git'
+gem 'git-gem', git: 'https://github.com/user/repo.git'
 gem 'local-gem', path: '/Users/user/path/to/local-gem'
 ```
 ---
@@ -711,6 +778,69 @@ gem 'local-gem', path: '/Users/user/path/to/local-gem'
 <!--
 Summary of what we've covered
 -->
+---
+
+<div class="two-columns">
+<div>
+
+## Roadmap
+
+- Why type Ruby code?
+- How to type RBS & Steep
+  - Ruby StdLib & RBS basics
+- Getting Real
+  - Typing existing code
+  - Using gems
+  - Escaping types
+  - Typing gems
+</div>
+
+</div>
+
+
+<!--
+That's it!
+Looking back at the roadmap we setout to cover at the start.
+-->
+
+---
+
+<div class="two-columns">
+<div>
+
+## Roadmap
+
+- Why type Ruby code?
+- How to type RBS & Steep
+  - Ruby StdLib & RBS basics
+- Getting Real
+  - Typing existing code
+  - Using gems
+  - Escaping types
+  - Typing gems
+</div>
+
+<div>
+
+## Takaways
+
+- There are rough edges 
+  - IDE tooling not 100% reliable
+  - Error messages a bit cryptic
+  - Limited community types
+- It mostly works!
+  - Typed code is easier to understand
+  - Typing code forces you to deeply understand your code
+
+</div>
+
+</div>
+
+
+<!--
+And my take aways are ... <on the slide>
+-->
+
 ---
 
 ## Links
