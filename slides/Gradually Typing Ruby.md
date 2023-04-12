@@ -64,9 +64,8 @@ You'll find me on github, and the slides and code for this talk are in the gradu
 - How use RBS & Steep
 - Getting Real
   - Typing existing code
-  - Using gems
+  - Gems vs. Types
   - Escaping types
-  - Typing gems
 
 <!--
 This is what we'll cover today.
@@ -626,7 +625,7 @@ One thing it doesn't do well is meta programmed stuff. Active Record Rails scope
 
 ---
 
-## Using Types with Gems
+## Gems vs Types
 
 [RBS collections](https://github.com/soutaro/steep/blob/master/guides/src/gem-rbs-collection/gem-rbs-collection.md)
 
@@ -725,42 +724,6 @@ disappointing to have to opt out of typing because of lacking tooling/typing of 
 
 ---
 
-## Writing Types for Gems
-
-Your own gem → write sigantures in `sig` and include it in your gem
-
-Somebodyelse's gem → contribute to [gem_rbs_collection](https://github.com/ruby/gem_rbs_collection/blob/main/docs/CONTRIBUTING.md)
-
-<!--
-A few disclaimers:
-* rbs collection only supports gems distributed via rubygems or types from the central collection repo
-* rbs collection does not support local gems installed via path
-* rbs collection does not gems installed via git
--->
-
----
-
-## Writing Types for Gems
-
-Your own gem → write sigantures in `sig` and include it in your gem
-
-Somebodyelse's gem → contribute to [gem_rbs_collection](https://github.com/ruby/gem_rbs_collection/blob/main/docs/CONTRIBUTING.md)
-
-<!--
-A few disclaimers:
-* rbs collection only supports gems distributed via rubygems or types from the central collection repo
-* rbs collection does not support local gems installed via path
-* rbs collection does not gems installed via git
--->
-
-...however shipping types in these 👇 scenarios won't work...
-
-```ruby
-gem 'git-gem', git: 'https://github.com/user/repo.git'
-gem 'local-gem', path: '/Users/user/path/to/local-gem'
-```
----
-
 ![bg](./img/check-yourself-2.webp)
 
 <!--
@@ -777,9 +740,8 @@ Summary of what we've covered
 - How use RBS & Steep
 - Getting Real
   - Typing existing code
-  - Using gems
+  - Gems vs Types
   - Escaping types
-  - Typing gems
 </div>
 
 </div>
@@ -801,9 +763,8 @@ Looking back at the roadmap we setout to cover at the start.
 - How use RBS & Steep
 - Getting Real
   - Typing existing code
-  - Using gems
+  - Gems vs Types
   - Escaping types
-  - Typing gems
 </div>
 
 <div>
