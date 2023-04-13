@@ -11,13 +11,3 @@ brew install marp fswatch
 ./slides/build
 open slides/*.html
 ```
-
-## Code
-
-```shell
-cd code
-git tag
-# checkout a step to follow along
-git checkout step-1
-bundle
-```
